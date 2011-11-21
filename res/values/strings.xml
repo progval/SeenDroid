@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SeenDroid</string>
+    <string name="main_button_public_feed">Public feed</string>
+    <string name="main_button_your_profile">Your profile</string>
+    <string name="main_text_places">Places</string>
+    <string name="main_text_go_to">Go to</string>
+    <string name="main_button_show_user">Show user</string>
+    <string name="main_button_search">Search</string>
+    <string name="main_button_settings">Settings</string>
+    <string name="main_button_send">Send</string>
+    <string name="main_text_send">Send</string>
+    <string name="loginprompt_title">Login prompt</string>
+    <string name="loginprompt_text_username">Username:</string>
+    <string name="loginprompt_text_password">Password:</string>
+    <string name="loginprompt_button_connect">Connect</string>
+</resources>
