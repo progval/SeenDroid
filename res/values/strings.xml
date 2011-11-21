@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SeenDroid</string>
-    <string name="main_button_public_feed">Public feed</string>
+    <string name="main_button_home_feed">Home feed</string>
     <string name="main_button_your_profile">Your profile</string>
     <string name="main_text_places">Places</string>
     <string name="main_text_go_to">Go to</string>
