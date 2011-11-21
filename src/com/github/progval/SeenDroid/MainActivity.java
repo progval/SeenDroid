@@ -78,18 +78,7 @@ public class MainActivity extends Activity {
     private void connect() {
         String username = settings.getString("login.username", "");
         String password = settings.getString("login.password", "");
-        Log.d("SeenDroid", String.format("Login as %s", MainActivity.settings.getString("login.username", "")));
-        this.connection = new Connection(MainActivity.settings.getString("login.username", ""),
-        		MainActivity.settings.getString("login.password", ""));
-        
-        MessageFetcher fetcher = new MessageFetcher(this.connection);
-        try {
-			Log.i("SeenDroid", "-------------------------------------------------------------");
-			Log.i("SeenDroid", fetcher.fetchId(20).getContent());
-			Log.i("SeenDroid", "-------------------------------------------------------------");
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Log.d("SeenDroid", String.format("Login as %s", username));
+        this.connection = new Connection(username, password);
     }
 }
