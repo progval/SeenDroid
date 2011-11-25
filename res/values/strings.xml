@@ -15,4 +15,5 @@
     <string name="loginprompt_text_password">Password:</string>
     <string name="loginprompt_button_connect">Connect</string>
     <string name="homefeed_title">Home feed</string>
+    <string name="showuser_pleasewait">Loading, please wait...</string>
 </resources>

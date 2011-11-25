@@ -10,8 +10,11 @@ import com.github.progval.SeenDroid.lib.Query.ParserException;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 public class ShowUserActivity extends ListActivity {
 	public static final String PREFS_NAME = "Main";
@@ -41,14 +44,7 @@ public class ShowUserActivity extends ListActivity {
         }
         
         
-        try {
-        	this.listMessages = new MessageFetcher(this.connection).fetchUser(this.showUser);
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        this.bindUi();
+        new FetchMessages(this, this.connection, this.showUser).execute();
     }
     
     private void bindUi() {
@@ -56,5 +52,48 @@ public class ShowUserActivity extends ListActivity {
 		this.setListAdapter(adapter);
 		
 		// TODO Bind buttons
+    }
+    
+    public void setMessages(ArrayList<Message> messages) {
+    	this.listMessages = messages;
+        
+        this.bindUi();
+    }
+    
+    private class FetchMessages extends AsyncTask<Void, Integer, ArrayList<Message>> {
+    	private ShowUserActivity activity;
+    	private Connection connection;
+    	private String username;
+    	private ProgressDialog dialog;
+    	
+    	public FetchMessages(ShowUserActivity activity, Connection connection, String username) {
+    		super();
+    		this.activity = activity;
+    		this.connection = connection;
+    		this.username = username;
+    		this.dialog =  ProgressDialog.show(ShowUserActivity.this, "", ShowUserActivity.this.getString(R.string.showuser_pleasewait), true);
+    	}
+    	
+        protected ArrayList<Message> doInBackground(Void... arg0) {
+        	ArrayList<Message> result;
+        	Log.d("SeenDroid", this.connection.toString());
+        	Log.d("SeenDroid", this.username);
+        	try {
+				result = new MessageFetcher(this.connection).fetchUser(this.username);
+			} catch (ParserException e) {
+				result = new ArrayList<Message>();
+				e.printStackTrace();
+			}
+        	return result;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            
+        }
+
+        protected void onPostExecute(ArrayList<Message> result) {
+            this.activity.setMessages(result);
+            this.dialog.dismiss();
+        }
     }
 }
