@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,9 +27,11 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        this.setContentView(R.layout.main);
         MainActivity.settings = getSharedPreferences(PREFS_NAME, 0);
-        
+
+        this.bindUi();
+
         this.safeConnect();
     }
     
@@ -80,5 +83,39 @@ public class MainActivity extends Activity {
         String password = settings.getString("login.password", "");
         Log.d("SeenDroid", String.format("Login as %s", username));
         this.connection = new Connection(username, password);
+    }
+
+    private void bindUi() {
+        // Profile
+    	((Button) this.findViewById(R.id.main_button_profile)).setOnClickListener(
+    			new Button.OnClickListener() {
+
+					@Override
+					public void onClick(View button) {
+						Bundle bundle = new Bundle();
+						bundle.putString("username", MainActivity.this.connection.getUsername());
+						Intent intent = new Intent(MainActivity.this, ShowUserActivity.class);
+						intent.putExtras(bundle);
+						startActivity(intent);
+					}
+    			}
+			);
+
+    	// Show user
+    	((Button) this.findViewById(R.id.main_button_show_user)).setOnClickListener(
+	    			new Button.OnClickListener() {
+
+						@Override
+						public void onClick(View button) {
+							EditText editText = (EditText) MainActivity.this.findViewById(R.id.main_edittext_goto);
+							Bundle bundle = new Bundle();
+							bundle.putString("username", editText.getText().toString());
+							Intent intent = new Intent(MainActivity.this, ShowUserActivity.class);
+							intent.putExtras(bundle);
+							startActivity(intent);
+						}
+	    				
+	    			}
+    			);
     }
 }

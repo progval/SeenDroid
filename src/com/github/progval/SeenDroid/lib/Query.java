@@ -26,7 +26,7 @@ public abstract class Query {
 		
 	}
 	
-	private Connection connection;
+	protected Connection connection;
 	
 	public Query(Connection connection) {
 		this.connection = connection;

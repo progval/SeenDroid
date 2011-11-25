@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">SeenDroid</string>
     <string name="main_button_home_feed">Home feed</string>
-    <string name="main_button_your_profile">Your profile</string>
+    <string name="main_button_button_profile">Your profile</string>
     <string name="main_text_places">Places</string>
     <string name="main_text_go_to">Go to</string>
     <string name="main_button_show_user">Show user</string>
@@ -14,4 +14,5 @@
     <string name="loginprompt_text_username">Username:</string>
     <string name="loginprompt_text_password">Password:</string>
     <string name="loginprompt_button_connect">Connect</string>
+    <string name="homefeed_title">Home feed</string>
 </resources>

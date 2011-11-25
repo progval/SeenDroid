@@ -85,5 +85,9 @@ public class Connection {
 		String credentials = Base64.encodeToString((this.username + ":" + this.password).getBytes(),Base64.DEFAULT);
 		message.addHeader("User-agent", "SeenDroid");
 		message.addHeader("Authorization", "Basic " + credentials.substring(0, credentials.length() - 1));
-	} 
+	}
+	
+	public String getUsername() {
+		return this.username;
+	}
 }
