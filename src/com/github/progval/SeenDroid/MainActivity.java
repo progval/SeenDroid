@@ -1,22 +1,31 @@
 package com.github.progval.SeenDroid;
 
+import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+
 import com.github.progval.SeenDroid.lib.Connection;
+import com.github.progval.SeenDroid.lib.Message;
+import com.github.progval.SeenDroid.lib.MessageEmitter;
 import com.github.progval.SeenDroid.lib.MessageFetcher;
 import com.github.progval.SeenDroid.lib.Query.ParserException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public static final String PREFS_NAME = "Main";
@@ -117,5 +126,54 @@ public class MainActivity extends Activity {
 	    				
 	    			}
     			);
+    	
+    	
+    	// Post message
+    	((Button) this.findViewById(R.id.main_button_send)).setOnClickListener(
+	    			new Button.OnClickListener() {
+
+						@Override
+						public void onClick(View button) {
+							MainActivity.this.post();
+
+						}
+	    				
+	    			}
+    			);
+    }
+    
+    
+    private class PublishMessage extends AsyncTask<Void, Integer, Document> {
+    	private Connection connection;
+    	private String message;
+    	private ProgressDialog dialog;
+    	
+    	public PublishMessage(Connection connection, String message) {
+    		super();
+    		this.connection = connection;
+    		this.message = message;
+    		this.dialog = ProgressDialog.show(MainActivity.this, "", MainActivity.this.getString(R.string.main_sendmessage_sending), true);
+    	}
+    	
+        protected Document doInBackground(Void... arg0) {
+        	try {
+        		return new MessageEmitter(this.connection).publish(message);
+			} catch (ParserException e) {
+				e.printStackTrace();
+				return null;
+			}
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+        protected void onPostExecute(Document document) {
+            this.dialog.dismiss();
+            Toast.makeText(MainActivity.this, R.string.main_sendmessage_success, Toast.LENGTH_LONG).show();
+        }
+    }
+    public void post() {
+		String message = ((EditText) this.findViewById(R.id.main_edittext_post)).getText().toString();
+	    
+		new MainActivity.PublishMessage(this.connection, message).execute();
     }
 }

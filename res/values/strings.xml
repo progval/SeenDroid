@@ -10,6 +10,8 @@
     <string name="main_button_settings">Settings</string>
     <string name="main_button_send">Send</string>
     <string name="main_text_send">Send</string>
+    <string name="main_sendmessage_sending">Sending message, please wait...</string>
+    <string name="main_sendmessage_success">Message successfully sent.</string>
     <string name="loginprompt_title">Login prompt</string>
     <string name="loginprompt_text_username">Username:</string>
     <string name="loginprompt_text_password">Password:</string>

@@ -1,6 +1,7 @@
 package com.github.progval.SeenDroid.lib;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.ProxySelector;
 
 
@@ -19,12 +20,14 @@ import org.apache.http.conn.params.ConnPerRouteBean;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.ProxySelectorRoutePlanner;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
 
 import android.util.Base64;
 
@@ -73,6 +76,19 @@ public class Connection {
 		this.addHeaders(post);
 		post.addHeader("Content-type", "application/atom+xml;type=entry");
 		return post;
+	}
+	public HttpPost getHttpPost(String uri, String data) {
+		HttpPost post = this.getHttpPost(uri);
+		try {
+			
+			StringEntity entity = new StringEntity(data, HTTP.UTF_8);
+			post.setEntity(entity);
+			return post;
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	public HttpPut getHttpPut(String uri) {
 		HttpPut post = new HttpPut(this.base_api_url + uri);
