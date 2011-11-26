@@ -93,6 +93,15 @@ public class MainActivity extends Activity {
         Log.d("SeenDroid", String.format("Login as %s", username));
         this.connection = new Connection(username, password);
     }
+    
+    private class OnUnavailableFeatureClickListener implements Button.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Toast.makeText(MainActivity.this, R.string.main_unavailablefeature, Toast.LENGTH_LONG).show();
+		}
+    	
+    }
 
     private void bindUi() {
         // Profile
@@ -140,6 +149,15 @@ public class MainActivity extends Activity {
 	    				
 	    			}
     			);
+    	
+    	// Home feed
+    	((Button) this.findViewById(R.id.main_button_home_feed)).setOnClickListener(new OnUnavailableFeatureClickListener());
+    	
+    	// Search
+    	((Button) this.findViewById(R.id.main_button_search)).setOnClickListener(new OnUnavailableFeatureClickListener());
+
+    	// Settings
+    	((Button) this.findViewById(R.id.main_button_settings)).setOnClickListener(new OnUnavailableFeatureClickListener());
     }
     
     

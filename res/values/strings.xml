@@ -12,6 +12,7 @@
     <string name="main_text_send">Send</string>
     <string name="main_sendmessage_sending">Sending message, please wait...</string>
     <string name="main_sendmessage_success">Message successfully sent.</string>
+    <string name="main_unavailablefeature">Sorry, this feature is not (yet?) available. Ask SeenThis to implement it to the API.</string>
     <string name="loginprompt_title">Login prompt</string>
     <string name="loginprompt_text_username">Username:</string>
     <string name="loginprompt_text_password">Password:</string>
