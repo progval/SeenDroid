@@ -14,7 +14,7 @@ public class User {
 	public User(Element element) {
 		this.name = this.getContentFromTag(element, "name"); // Format: "<User name> (@<id>)"
 		String uri = this.getContentFromTag(element, "uri"); // Format: http://seenthis.net/people/<id>
-		this.id = uri.substring(uri.lastIndexOf("/"));
+		this.id = "@" + uri.substring(uri.lastIndexOf("/") + 1);
 		this.email = this.getContentFromTag(element, "email");
 	}
 	public User(Node node) {

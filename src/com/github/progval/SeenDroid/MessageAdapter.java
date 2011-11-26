@@ -9,7 +9,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MessageAdapter extends BaseAdapter {
@@ -24,13 +24,15 @@ public class MessageAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		LinearLayout view;
+		RelativeLayout view;
 		if (null == convertView) {
-			view = (LinearLayout) LinearLayout.inflate(this.context, R.layout.message, null);
+			view = (RelativeLayout) RelativeLayout.inflate(this.context, R.layout.message, null);
 		} else {
-	        view = (LinearLayout) convertView;
+	        view = (RelativeLayout) convertView;
 		}
-		
+
+        TextView authorid = (TextView) view.findViewById(R.id.message_authorid);
+        authorid.setText(this.items.get(position).getAuthor().getId());
         TextView title = (TextView) view.findViewById(R.id.message_title);
         title.setText(this.items.get(position).getTitle());
 		TextView summary = (TextView) view.findViewById(R.id.message_summary);
