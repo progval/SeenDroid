@@ -16,6 +16,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -60,17 +61,17 @@ public abstract class Query {
     }
 	
 	protected Document getXmlDocument(String uri) throws ParserException {
-        Document document;
+	    return this.getXmlDocument(this.connection.getHttpGet(uri));
+	}
+	protected Document getXmlDocument(HttpRequestBase request) throws ParserException {
+		HttpResponse response;
 		try {
-	        HttpGet get = this.connection.getHttpGet(uri);
-	        HttpResponse response = this.connection.query(get);
+			response = this.connection.query(request);
 	        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			document = builder.parse(response.getEntity().getContent());
-		}
-		catch (Exception e) {
+			return builder.parse(response.getEntity().getContent());
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Query.ParserException();
 		}
-        return document;
 	}
 }

@@ -8,8 +8,10 @@ import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.params.ConnManagerPNames;
@@ -44,7 +46,7 @@ public class Connection {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public HttpResponse query(HttpGet message) throws ClientProtocolException, IOException {
+	public HttpResponse query(HttpRequestBase message) throws ClientProtocolException, IOException {
 		// SSL fixes (javax.net.ssl.SSLPeerUnverifiedException: No peer certificate)
 		// From http://www.virtualzone.de/2011-02-27/how-to-use-apache-httpclient-with-httpsssl-on-android/
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
@@ -65,13 +67,21 @@ public class Connection {
 		HttpResponse response = client.execute(message);
 		return response;
 	}
-	/**
-	 * 
-	 * @param uri Relative path for the request; starts with a /.
-	 * @return A HTTP post suitable for Seenthis requests.
-	 */
+
 	public HttpPost getHttpPost(String uri) {
 		HttpPost post = new HttpPost(this.base_api_url + uri);
+		this.addHeaders(post);
+		post.addHeader("Content-type", "application/atom+xml;type=entry");
+		return post;
+	}
+	public HttpPut getHttpPut(String uri) {
+		HttpPut post = new HttpPut(this.base_api_url + uri);
+		this.addHeaders(post);
+		post.addHeader("Content-type", "application/atom+xml;type=entry");
+		return post;
+	}
+	public HttpDelete getHttpDelete(String uri) {
+		HttpDelete post = new HttpDelete(this.base_api_url + uri);
 		this.addHeaders(post);
 		post.addHeader("Content-type", "application/atom+xml;type=entry");
 		return post;
