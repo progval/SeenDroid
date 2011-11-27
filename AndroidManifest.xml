@@ -14,6 +14,7 @@
             </intent-filter>
         </activity>
         <activity android:name="ShowUserActivity" android:permission="android.permission.INTERNET"></activity>
+        <activity android:name="ThreadReplyActivity" android:permission="android.permission.INTERNET"></activity>
 
     </application>
 </manifest>

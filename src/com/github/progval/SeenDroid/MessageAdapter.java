@@ -31,12 +31,8 @@ public class MessageAdapter extends BaseAdapter {
 	        view = (RelativeLayout) convertView;
 		}
 
-        TextView authorid = (TextView) view.findViewById(R.id.message_authorid);
-        authorid.setText(this.items.get(position).getAuthor().getId());
-        TextView title = (TextView) view.findViewById(R.id.message_title);
-        title.setText(this.items.get(position).getTitle());
-		TextView summary = (TextView) view.findViewById(R.id.message_summary);
-		summary.setText(this.items.get(position).getSummary());
+		Utils.populateMessageView(view, this.items.get(position));
+
 		
 		return view;
 	}
@@ -49,7 +45,7 @@ public class MessageAdapter extends BaseAdapter {
 
 
 	@Override
-	public Object getItem(int location) {
+	public Message getItem(int location) {
 		return this.items.get(location);
 	}
 

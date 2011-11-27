@@ -7,12 +7,25 @@ import com.github.progval.SeenDroid.lib.Message;
 import com.github.progval.SeenDroid.lib.MessageFetcher;
 import com.github.progval.SeenDroid.lib.Query.ParserException;
 
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class ShowUserActivity extends ListActivity {
 	public static final String PREFS_NAME = "Main";
@@ -33,7 +46,6 @@ public class ShowUserActivity extends ListActivity {
         String password = settings.getString("login.password", "");
         this.connection = new Connection(username, password);
         this.setTitle(R.string.homefeed_title);
-        ShowUserActivity.settings = getSharedPreferences(PREFS_NAME, 0);
         
         Bundle extras = getIntent().getExtras(); 
         if(extras !=null)
@@ -48,9 +60,33 @@ public class ShowUserActivity extends ListActivity {
     private void bindUi() {
         this.adapter = new MessageAdapter(this, this.listMessages);
 		this.setListAdapter(adapter);
-		
-		// TODO Bind buttons
+		this.registerForContextMenu(this.getListView());
     }
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+		if (view == this.getListView()) {
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+			final Message clickedMessage = this.adapter.getItem(info.position);
+			menu.setHeaderTitle(clickedMessage.getTitle());
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.showuser_context, menu);
+		}
+	}
+    public boolean onContextItemSelected(MenuItem item) {
+	   Log.d("SeenDroid", String.valueOf(item.getItemId()));
+	   AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+	   if (item.getItemId() == R.id.showuser_contextmenu_showthread) {
+			Toast.makeText(this, R.string.main_unavailablefeature, Toast.LENGTH_LONG).show();
+		   return true;
+	   }
+	   else if (item.getItemId() == R.id.showuser_contextmenu_reply) {
+			Bundle bundle = new Bundle();
+			bundle.putInt("origin", this.adapter.getItem(info.position).getId());
+			Intent intent = new Intent(this, ThreadReplyActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+	   }
+	   return super.onContextItemSelected(item);
+	}
     
     public void setMessages(ArrayList<Message> messages) {
     	this.listMessages = messages;

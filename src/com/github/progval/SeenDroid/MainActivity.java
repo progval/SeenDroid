@@ -154,38 +154,9 @@ public class MainActivity extends Activity {
     	((Button) this.findViewById(R.id.main_button_settings)).setOnClickListener(new OnUnavailableFeatureClickListener());
     }
     
-    
-    private class PublishMessage extends AsyncTask<Void, Integer, Document> {
-    	private Connection connection;
-    	private String message;
-    	private ProgressDialog dialog;
-    	
-    	public PublishMessage(Connection connection, String message) {
-    		super();
-    		this.connection = connection;
-    		this.message = message;
-    		this.dialog = ProgressDialog.show(MainActivity.this, "", MainActivity.this.getString(R.string.main_sendmessage_sending), true);
-    	}
-    	
-        protected Document doInBackground(Void... arg0) {
-        	try {
-        		return new MessageEmitter(this.connection).publish(message);
-			} catch (ParserException e) {
-				e.printStackTrace();
-				return null;
-			}
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-        }
-        protected void onPostExecute(Document document) {
-            this.dialog.dismiss();
-            Toast.makeText(MainActivity.this, R.string.main_sendmessage_success, Toast.LENGTH_LONG).show();
-        }
-    }
     public void post() {
 		String message = ((EditText) this.findViewById(R.id.main_edittext_post)).getText().toString();
 	    
-		new MainActivity.PublishMessage(this.connection, message).execute();
+		new AsyncMessageEmitter(this, this.connection, message).execute();
     }
 }

@@ -17,8 +17,12 @@ public class MessageEmitter extends Query {
 	public MessageEmitter(Connection connection) {
 		super(connection);
 	}
-
+	
 	public Document publish(String message) throws ParserException {
+		return this.publish(message, -1);
+	}
+
+	public Document publish(String message, int replyTo) throws ParserException {
 		Document document;
 		try {
 			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
@@ -38,7 +42,12 @@ public class MessageEmitter extends Query {
 		entry.appendChild(summary);
 		
 		Element replyto = document.createElement("thr:in-reply-to");
-		replyto.setAttribute("ref", "$inreplyto");
+		if (replyTo == -1) {
+			replyto.setAttribute("ref", "$inreplyto");
+		}
+		else {
+			replyto.setAttribute("ref", String.format("message:%d", replyTo));
+		}
 		entry.appendChild(replyto);
 		
 		document.getDocumentElement().normalize();
