@@ -2,8 +2,6 @@ package com.github.progval.SeenDroid.lib;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.ProxySelector;
-
 
 import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
@@ -22,7 +20,6 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.ProxySelectorRoutePlanner;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;

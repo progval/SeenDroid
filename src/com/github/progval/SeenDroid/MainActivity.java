@@ -1,20 +1,14 @@
 package com.github.progval.SeenDroid;
 
-import java.util.ArrayList;
-
 import org.w3c.dom.Document;
 
 import com.github.progval.SeenDroid.lib.Connection;
-import com.github.progval.SeenDroid.lib.Message;
 import com.github.progval.SeenDroid.lib.MessageEmitter;
-import com.github.progval.SeenDroid.lib.MessageFetcher;
 import com.github.progval.SeenDroid.lib.Query.ParserException;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;

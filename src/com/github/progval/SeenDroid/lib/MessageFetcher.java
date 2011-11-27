@@ -1,17 +1,10 @@
 package com.github.progval.SeenDroid.lib;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.Text;
 
 import android.util.Log;
 

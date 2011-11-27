@@ -10,21 +10,14 @@ import java.io.Writer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
-import android.util.Log;
 
 public abstract class Query {
 	public class ParserException extends Exception {
-		
+		private static final long serialVersionUID = 1681739776018219945L;
 	}
 	
 	protected Connection connection;

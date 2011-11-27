@@ -1,17 +1,14 @@
 package com.github.progval.SeenDroid.lib;
 
 import java.io.StringWriter;
-import java.io.Writer;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.http.client.methods.HttpPost;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
