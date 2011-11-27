@@ -1,4 +1,4 @@
-package com.github.progval.SeenDroid.lib;
+package org.openihs.seendroid.lib;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

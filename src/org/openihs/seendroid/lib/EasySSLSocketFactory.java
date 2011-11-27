@@ -1,4 +1,4 @@
-package com.github.progval.SeenDroid.lib;
+package org.openihs.seendroid.lib;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

@@ -1,4 +1,4 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
 import android.content.Context;
 import android.widget.LinearLayout;

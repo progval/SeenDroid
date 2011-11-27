@@ -1,6 +1,6 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
-import com.github.progval.SeenDroid.lib.Message;
+import org.openihs.seendroid.lib.Message;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;

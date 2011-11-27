@@ -1,5 +1,8 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
+import org.openihs.seendroid.lib.Connection;
+import org.openihs.seendroid.lib.MessageEmitter;
+import org.openihs.seendroid.lib.Query.ParserException;
 import org.w3c.dom.Document;
 
 import android.app.Activity;
@@ -7,10 +10,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.github.progval.SeenDroid.lib.Connection;
-import com.github.progval.SeenDroid.lib.MessageEmitter;
-import com.github.progval.SeenDroid.lib.Query.ParserException;
 
 public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
 	private Activity activity;

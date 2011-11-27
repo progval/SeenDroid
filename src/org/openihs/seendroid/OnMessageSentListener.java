@@ -1,4 +1,4 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
 public interface OnMessageSentListener {
 	public void onMessageSent();

@@ -1,11 +1,11 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
 import java.util.ArrayList;
 
-import com.github.progval.SeenDroid.lib.Connection;
-import com.github.progval.SeenDroid.lib.Message;
-import com.github.progval.SeenDroid.lib.MessageFetcher;
-import com.github.progval.SeenDroid.lib.Query.ParserException;
+import org.openihs.seendroid.lib.Connection;
+import org.openihs.seendroid.lib.Message;
+import org.openihs.seendroid.lib.MessageFetcher;
+import org.openihs.seendroid.lib.Query.ParserException;
 
 import android.app.Dialog;
 import android.app.ListActivity;

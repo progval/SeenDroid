@@ -1,9 +1,9 @@
-package com.github.progval.SeenDroid;
+package org.openihs.seendroid;
 
 import java.util.ArrayList;
 
-import com.github.progval.SeenDroid.lib.Connection;
-import com.github.progval.SeenDroid.lib.Message;
+import org.openihs.seendroid.lib.Connection;
+import org.openihs.seendroid.lib.Message;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
