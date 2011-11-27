@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:weightSum="1">
+    <LinearLayout android:orientation="vertical"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:weightSum="1">
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_text_places" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/main_text_places"></TextView>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
 	    <Button android:layout_height="wrap_content" android:id="@+id/main_button_home_feed" android:text="@string/main_button_home_feed" android:layout_weight="1" android:layout_width="0dp"></Button>
@@ -15,10 +19,11 @@
         <Button android:layout_height="wrap_content" android:id="@+id/main_button_show_user" android:text="@string/main_button_show_user" android:layout_weight="1" android:layout_width="0dp"></Button>
         <Button android:layout_height="wrap_content" android:id="@+id/main_button_search" android:text="@string/main_button_search" android:layout_weight="1" android:layout_width="0dp"></Button>
     </LinearLayout>
-    <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_edittext_goto">
-        <requestFocus></requestFocus>
-    </EditText>
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_edittext_goto"></EditText>
     <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/main_text_send" android:text="@string/main_text_send" android:layout_gravity="center_vertical" android:layout_width="wrap_content"></TextView>
     <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_button_send" android:text="@string/main_button_send"></Button>
-    <EditText android:id="@+id/main_edittext_post" android:inputType="textMultiLine" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="top"></EditText>
-</LinearLayout>
+    <EditText android:id="@+id/main_edittext_post" android:inputType="textMultiLine" android:layout_width="match_parent" android:gravity="top" android:layout_height="match_parent">
+        <requestFocus></requestFocus>
+    </EditText>
+    </LinearLayout>
+</ScrollView>
