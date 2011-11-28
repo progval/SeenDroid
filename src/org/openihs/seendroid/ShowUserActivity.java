@@ -88,7 +88,7 @@ public class ShowUserActivity extends ListActivity {
         String username = settings.getString("login.username", "");
         String password = settings.getString("login.password", "");
         this.connection = new Connection(username, password);
-        this.setTitle(R.string.homefeed_title);
+        this.setTitle(this.showUser);
         
         
         new FetchMessages(this, this.connection, this.showUser).execute();
