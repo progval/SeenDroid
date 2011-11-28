@@ -26,7 +26,8 @@
                     android:pathPattern="/people/.*" />
             </intent-filter>
         </activity>
-        <activity android:name="ThreadReplyActivity"></activity>
+        <activity android:name=".ThreadReplyActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
 
     </application>
 </manifest>

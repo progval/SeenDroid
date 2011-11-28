@@ -30,6 +30,7 @@ import org.openihs.seendroid.lib.Message;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +38,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class ThreadReplyActivity extends Activity implements OnMessageSentListener {
-	public static final String PREFS_NAME = "Main";
 	private static SharedPreferences settings;
 	private Connection connection;
 	private int originId;
@@ -47,7 +47,7 @@ public class ThreadReplyActivity extends Activity implements OnMessageSentListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.threadreply);
-        ThreadReplyActivity.settings = getSharedPreferences(PREFS_NAME, 0);
+        ThreadReplyActivity.settings = PreferenceManager.getDefaultSharedPreferences(this);
         String username = settings.getString("login.username", "");
         String password = settings.getString("login.password", "");
         this.connection = new Connection(username, password);

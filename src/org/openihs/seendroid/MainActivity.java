@@ -35,7 +35,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
@@ -43,7 +47,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	public static final String PREFS_NAME = "Main";
 	private static SharedPreferences settings;
 	private Connection connection;
 	
@@ -52,11 +55,30 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
-        MainActivity.settings = getSharedPreferences(PREFS_NAME, 0);
+        MainActivity.settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         this.bindUi();
 
         this.safeConnect();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+	        case R.id.main_menu_settings:
+				Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+				startActivity(intent);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+        }
     }
     
     public void safeConnect() {

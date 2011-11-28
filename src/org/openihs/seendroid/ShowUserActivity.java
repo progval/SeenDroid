@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -52,7 +53,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ShowUserActivity extends ListActivity {
-	public static final String PREFS_NAME = "Main";
 	private static SharedPreferences settings;
 	private Connection connection;
 	private String showUser;
@@ -84,7 +84,7 @@ public class ShowUserActivity extends ListActivity {
 	        }
         }
         setContentView(R.layout.profile);
-        ShowUserActivity.settings = getSharedPreferences(PREFS_NAME, 0);
+        ShowUserActivity.settings = PreferenceManager.getDefaultSharedPreferences(this);
         String username = settings.getString("login.username", "");
         String password = settings.getString("login.password", "");
         this.connection = new Connection(username, password);
