@@ -13,8 +13,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ShowUserActivity" android:permission="android.permission.INTERNET"></activity>
-        <activity android:name="ThreadReplyActivity" android:permission="android.permission.INTERNET"></activity>
+        <activity android:name=".ShowUserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+                <category
+                    android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="http"
+                    android:host="seenthis.net"
+                    android:pathPattern="/people/.*" />
+            </intent-filter>
+        </activity>
+        <activity android:name="ThreadReplyActivity"></activity>
 
     </application>
 </manifest>

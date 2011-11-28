@@ -22,6 +22,8 @@
 
 package org.openihs.seendroid;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.openihs.seendroid.lib.Connection;
@@ -62,18 +64,32 @@ public class ShowUserActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    	Log.d("SeenDroid", "===================================================================");
+        String url = getIntent().getDataString();
+        if (url != null) {
+        	Log.d("SeenDroid", url);
+        	URL url2;
+			try {
+				url2 = new URL(url);
+	        	this.showUser = url2.getPath().split("/")[2]; // Scheme : http://seenthis.net/people/<username>
+	        	Log.d("SeenDroid", this.showUser);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+        }
+        else {
+	        Bundle extras = getIntent().getExtras(); 
+	        if(extras !=null)
+	        {
+	        	this.showUser = extras.getString("username");
+	        }
+        }
         setContentView(R.layout.profile);
         ShowUserActivity.settings = getSharedPreferences(PREFS_NAME, 0);
         String username = settings.getString("login.username", "");
         String password = settings.getString("login.password", "");
         this.connection = new Connection(username, password);
         this.setTitle(R.string.homefeed_title);
-        
-        Bundle extras = getIntent().getExtras(); 
-        if(extras !=null)
-        {
-        	this.showUser = extras.getString("username");
-        }
         
         
         new FetchMessages(this, this.connection, this.showUser).execute();
