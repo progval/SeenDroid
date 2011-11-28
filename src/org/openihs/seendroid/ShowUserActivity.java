@@ -64,7 +64,6 @@ public class ShowUserActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    	Log.d("SeenDroid", "===================================================================");
         String url = getIntent().getDataString();
         if (url != null) {
         	Log.d("SeenDroid", url);
