@@ -49,8 +49,8 @@ public class Message {
 		this.title = this.getContentFromTag(element, "title");
 		this.author = new User(element.getElementsByTagName("author").item(0));
 		this.summary = this.getContentFromTag(element, "summary")
-				.replaceAll(((Character) Character.toChars(0x275D)[0]).toString(), "«") // ❝ to «
-				.replaceAll(((Character) Character.toChars(0x275E)[0]).toString(), "»"); // ❞ to »
+				.replaceAll(((Character) Character.toChars(0x275D)[0]).toString(), "« ") // ❝ to «
+				.replaceAll(((Character) Character.toChars(0x275E)[0]).toString(), " »"); // ❞ to »
 		this.content = this.getContentFromTag(element, "content");
 		this.published = this.getContentFromTag(element, "published");
 		this.updated = this.getContentFromTag(element, "updated");
