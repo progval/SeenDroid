@@ -40,7 +40,9 @@ public class MessageFetcher extends Query {
 		return new Message(document.getDocumentElement());
 	}
 	private ArrayList<Message> multipleFetch(String uri) throws ParserException {
+		Log.d("SeenDroid", "Downloading.");
 		Document document = this.getXmlDocument(uri);
+		Log.d("SeenDroid", "Starting parse.");
 		ArrayList<Message> messages = new ArrayList<Message>();
 		
 		Element rootElement = document.getDocumentElement();
