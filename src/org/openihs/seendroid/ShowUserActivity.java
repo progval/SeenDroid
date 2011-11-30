@@ -37,6 +37,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -64,17 +65,11 @@ public class ShowUserActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String url = getIntent().getDataString();
+        Uri url = getIntent().getData();
         if (url != null) {
-        	Log.d("SeenDroid", url);
-        	URL url2;
-			try {
-				url2 = new URL(url);
-	        	this.showUser = url2.getPath().split("/")[2]; // Scheme : http://seenthis.net/people/<username>
-	        	Log.d("SeenDroid", this.showUser);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+        	Log.d("SeenDroid", url.toString());
+        	this.showUser = url.getPath().split("/")[2]; // Scheme : http://seenthis.net/people/<username>
+        	Log.d("SeenDroid", this.showUser);
         }
         else {
 	        Bundle extras = getIntent().getExtras(); 
