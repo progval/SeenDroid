@@ -163,6 +163,7 @@ public class ShowUserActivity extends ListActivity {
         }
 
         protected void onPostExecute(ArrayList<Message> result) {
+        	this.dialog.dismiss();
         	if (result != null) {
 	            this.activity.setMessages(result);
         	}
