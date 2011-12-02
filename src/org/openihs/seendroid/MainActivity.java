@@ -56,8 +56,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
         MainActivity.settings = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String action = intent.getAction();
 
         this.bindUi();
+
+        Log.d("SeenDroid", "root");
+        // if this is from the share menu
+        if (Intent.ACTION_SEND.equals(action))
+        {
+            Log.d("SeenDroid", "send");
+            if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                Log.d("SeenDroid", "extras");
+            	EditText post = (EditText) this.findViewById(R.id.main_edittext_post);
+            	post.setText(extras.getString(Intent.EXTRA_TEXT));
+            	post.requestFocus();
+            }
+        }
 
         this.safeConnect();
     }
