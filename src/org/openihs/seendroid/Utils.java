@@ -22,6 +22,11 @@
 
 package org.openihs.seendroid;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
@@ -29,7 +34,10 @@ import java.util.regex.Pattern;
 
 import org.openihs.seendroid.lib.Message;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -78,5 +86,37 @@ public class Utils {
 		Linkify.addLinks(view, Linkify.ALL);
 		Linkify.addLinks(view, Utils.tagPattern, Utils.tagUri.toString(), null, Utils.tagFilter);
 		Linkify.addLinks(view, Utils.userPattern, Utils.userUri.toString(), null, Utils.userFilter);
+	}
+	
+	public static boolean errorLog(Activity activity, Exception exception, String debugData) {
+		ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
+		PrintStream printstream = new PrintStream(bytearrayoutputstream);
+		exception.printStackTrace(printstream);
+		String traceback;
+		try {
+			traceback = bytearrayoutputstream.toString("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"seendroid.crash@openihs.org"});
+		intent.putExtra(Intent.EXTRA_SUBJECT, "SeenDroid crash report");
+		intent.putExtra(Intent.EXTRA_TEXT, "Traceback:\n" + traceback + 
+				"\n-----------------------------------\nDebug data:\n" + debugData +
+				"\n-----------------------------------\n" + 
+				"If you want to had informations about what happened, please write here:\n");
+		try {
+		    activity.startActivity(Intent.createChooser(intent, "Send crash report..."));
+		    return true;
+		} catch (android.content.ActivityNotFoundException ex) {
+		    Log.w("SeenDroid", "No email client installed, unable to send bug report.");
+		    return false;
+		}
+	}
+	public static boolean errorLog(Activity activity, Exception exception) {
+		return Utils.errorLog(activity, exception, "\nNo debug data");
 	}
 }

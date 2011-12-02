@@ -22,6 +22,7 @@
 
 package org.openihs.seendroid.lib;
 
+import org.openihs.seendroid.Utils;
 import org.w3c.dom.Element;
 
 import android.util.Log;

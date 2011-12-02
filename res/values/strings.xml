@@ -22,6 +22,7 @@
     <string name="showuser_pleasewait">Loading, please wait...</string>
     <string name="showuser_contextmenu_showthread">Show thread</string>
     <string name="showuser_contextmenu_reply">Reply</string>
+    <string name="showuser_usernotfound">This user does not exist.</string>
     <string name="threaddisplay_title">Thread</string>
     <string name="threadreply_title">Reply to thread</string>
     <string name="threadreply_button_reply">Reply</string>

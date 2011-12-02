@@ -68,6 +68,7 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
     		}
     		
 		} catch (ParserException e) {
+			Utils.errorLog(this.activity, e, String.format("Writing message in reply to %d", this.replyTo));
 			e.printStackTrace();
 			return null;
 		}

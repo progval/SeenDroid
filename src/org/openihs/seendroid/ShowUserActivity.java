@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import org.openihs.seendroid.lib.Connection;
 import org.openihs.seendroid.lib.Message;
 import org.openihs.seendroid.lib.MessageFetcher;
+import org.openihs.seendroid.lib.MessageFetcher.UserDoesNotExist;
 import org.openihs.seendroid.lib.Query.ParserException;
 
 import android.app.Dialog;
@@ -145,10 +146,14 @@ public class ShowUserActivity extends ListActivity {
         	Log.d("SeenDroid", this.connection.toString());
         	Log.d("SeenDroid", this.username);
         	try {
-				result = new MessageFetcher(this.connection).fetchUser(this.username);
+				try {
+					result = new MessageFetcher(this.connection).fetchUser(this.username);
+				} catch (UserDoesNotExist e) {
+					return null;
+				}
 			} catch (ParserException e) {
 				result = new ArrayList<Message>();
-				e.printStackTrace();
+				Utils.errorLog(this.activity, e, String.format("Showing user %s.", this.username));
 			}
         	return result;
         }
@@ -158,8 +163,13 @@ public class ShowUserActivity extends ListActivity {
         }
 
         protected void onPostExecute(ArrayList<Message> result) {
-            this.activity.setMessages(result);
-            this.dialog.dismiss();
+        	if (result != null) {
+	            this.activity.setMessages(result);
+        	}
+        	else {
+				Toast.makeText(ShowUserActivity.this, R.string.showuser_usernotfound, Toast.LENGTH_LONG).show();
+				ShowUserActivity.this.finish();
+        	}
         }
     }
 }

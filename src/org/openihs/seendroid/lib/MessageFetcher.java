@@ -31,6 +31,10 @@ import org.w3c.dom.Node;
 import android.util.Log;
 
 public class MessageFetcher extends Query {
+	public class UserDoesNotExist extends Exception {
+		
+	}
+	
 	public MessageFetcher(Connection connection) {
 		super(connection);
 		
@@ -39,9 +43,12 @@ public class MessageFetcher extends Query {
 		Document document = this.getXmlDocument(String.format("/messages/%d", id));
 		return new Message(document.getDocumentElement());
 	}
-	private ArrayList<Message> multipleFetch(String uri) throws ParserException {
+	private ArrayList<Message> multipleFetch(String uri) throws ParserException, UserDoesNotExist {
 		Log.d("SeenDroid", "Downloading.");
 		Document document = this.getXmlDocument(uri);
+		if (document.getDocumentElement().getNodeName().equals("html")) {
+			throw new MessageFetcher.UserDoesNotExist();
+		}
 		Log.d("SeenDroid", "Starting parse.");
 		ArrayList<Message> messages = new ArrayList<Message>();
 		
@@ -65,10 +72,10 @@ public class MessageFetcher extends Query {
 		
 		return messages;
 	}
-	public ArrayList<Message> fetchHome() throws ParserException {
+	public ArrayList<Message> fetchHome() throws ParserException, UserDoesNotExist {
 		return this.multipleFetch("/messages/");
 	}
-	public ArrayList<Message> fetchUser(String username) throws ParserException {
+	public ArrayList<Message> fetchUser(String username) throws ParserException, UserDoesNotExist {
 		return this.multipleFetch(String.format("/people/%s/messages", username));
 	}
 }
