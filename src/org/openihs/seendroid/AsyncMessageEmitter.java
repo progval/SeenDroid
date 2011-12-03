@@ -78,9 +78,14 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
     }
     protected void onPostExecute(Document document) {
         this.dialog.dismiss();
-        Toast.makeText(this.activity, R.string.postmessage_success, Toast.LENGTH_LONG).show();
-        if (this.onMessageSentListener != null) {
-        	this.onMessageSentListener.onMessageSent();
+        if (document.getDocumentElement() == null) {
+            Toast.makeText(this.activity, R.string.postmessage_failed, Toast.LENGTH_LONG).show();
+        }
+        else {
+	        Toast.makeText(this.activity, R.string.postmessage_success, Toast.LENGTH_LONG).show();
+	        if (this.onMessageSentListener != null) {
+	        	this.onMessageSentListener.onMessageSent();
+	        }
         }
     }
     public void setOnMessageSentListener(OnMessageSentListener listener) {

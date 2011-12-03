@@ -29,6 +29,7 @@
     <string name="postmessage_button_dismiss">Dismiss</string>
     <string name="postmessage_sending">Sending...</string>
     <string name="postmessage_success">Message successfully sent.</string>
+    <string name="postmessage_failed">Message could not be sent.</string>
     <string name="preferences_connection">Connection</string>
     <string name="preferences_connection_hostname_title">Hostname</string>
     <string name="preferences_connection_hostname_summary">The hostname for the SeenThis API. Should be only "seenthis.net" unless you know what you do.</string>
