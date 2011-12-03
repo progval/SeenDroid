@@ -20,7 +20,7 @@
         <Button android:layout_height="wrap_content" android:id="@+id/main_button_search" android:text="@string/main_button_search" android:layout_weight="1" android:layout_width="0dp"></Button>
     </LinearLayout>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_edittext_goto"></EditText>
-    <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/main_text_send" android:text="@string/main_text_send" android:layout_gravity="center_vertical" android:layout_width="wrap_content"></TextView>
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_button_send" android:text="@string/main_button_send"></Button>
+    <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/main_text_newpost" android:text="@string/main_text_newpost" android:layout_gravity="center_vertical" android:layout_width="wrap_content"></TextView>
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_button_newpost" android:text="@string/main_button_newpost"></Button>
     </LinearLayout>
 </ScrollView>

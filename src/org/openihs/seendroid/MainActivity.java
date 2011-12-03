@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
     	
     	
     	// Post message
-    	((Button) this.findViewById(R.id.main_button_send)).setOnClickListener(
+    	((Button) this.findViewById(R.id.main_button_newpost)).setOnClickListener(
 	    			new Button.OnClickListener() {
 
 						@Override

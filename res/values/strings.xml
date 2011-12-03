@@ -8,10 +8,8 @@
     <string name="main_button_show_user">Show user</string>
     <string name="main_button_search">Search</string>
     <string name="main_button_settings">Settings</string>
-    <string name="main_button_send">Send</string>
-    <string name="main_text_send">Send</string>
-    <string name="main_sendmessage_sending">Sending message, please wait...</string>
-    <string name="main_sendmessage_success">Message successfully sent.</string>
+    <string name="main_button_newpost">Click to start writing</string>
+    <string name="main_text_newpost">New message</string>
     <string name="main_unavailablefeature">Sorry, this feature is not (yet?) available. Ask SeenThis to implement it to the API.</string>
     <string name="main_menu_settings">Settings</string>
     <string name="loginprompt_title">Login prompt</string>
@@ -29,6 +27,8 @@
     <string name="postmessage_button_post">Post</string>
     <string name="postmessage_button_reply">Reply</string>
     <string name="postmessage_button_dismiss">Dismiss</string>
+    <string name="postmessage_sending">Sending...</string>
+    <string name="postmessage_success">Message successfully sent.</string>
     <string name="preferences_connection">Connection</string>
     <string name="preferences_connection_hostname_title">Hostname</string>
     <string name="preferences_connection_hostname_summary">The hostname for the SeenThis API. Should be only "seenthis.net" unless you know what you do.</string>

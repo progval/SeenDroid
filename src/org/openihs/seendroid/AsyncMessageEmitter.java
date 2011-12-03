@@ -52,7 +52,7 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
 		this.message = message;
 		this.activity = activity;
 		this.replyTo = replyTo;
-		this.dialog = ProgressDialog.show(this.activity, "", this.activity.getString(R.string.main_sendmessage_sending), true);
+		this.dialog = ProgressDialog.show(this.activity, "", this.activity.getString(R.string.postmessage_sending), true);
 	}
 
 	protected Document doInBackground(Void... arg0) {
@@ -78,7 +78,7 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
     }
     protected void onPostExecute(Document document) {
         this.dialog.dismiss();
-        Toast.makeText(this.activity, R.string.main_sendmessage_success, Toast.LENGTH_LONG).show();
+        Toast.makeText(this.activity, R.string.postmessage_success, Toast.LENGTH_LONG).show();
         if (this.onMessageSentListener != null) {
         	this.onMessageSentListener.onMessageSent();
         }
