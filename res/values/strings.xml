@@ -24,9 +24,11 @@
     <string name="showuser_contextmenu_reply">Reply</string>
     <string name="showuser_usernotfound">This user does not exist.</string>
     <string name="threaddisplay_title">Thread</string>
-    <string name="threadreply_title">Reply to thread</string>
-    <string name="threadreply_button_reply">Reply</string>
-    <string name="threadreply_button_dismiss">Dismiss</string>
+    <string name="postmessage_title_post">New post</string>
+    <string name="postmessage_title_reply">Reply to thread</string>
+    <string name="postmessage_button_post">Post</string>
+    <string name="postmessage_button_reply">Reply</string>
+    <string name="postmessage_button_dismiss">Dismiss</string>
     <string name="preferences_connection">Connection</string>
     <string name="preferences_connection_hostname_title">Hostname</string>
     <string name="preferences_connection_hostname_summary">The hostname for the SeenThis API. Should be only "seenthis.net" unless you know what you do.</string>

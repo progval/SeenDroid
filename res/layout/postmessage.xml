@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:weightSum="1">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/threadreply_layout_buttons" android:orientation="horizontal">
+        <Button android:layout_height="wrap_content" android:id="@+id/postmessage_button_post" android:text="@string/postmessage_button_post" android:layout_weight="1" android:layout_width="0dp"></Button>
+        <Button android:layout_height="wrap_content" android:id="@+id/postmessage_button_dismiss" android:text="@string/postmessage_button_dismiss" android:layout_weight="1" android:layout_width="0dp"></Button>
+    </LinearLayout>
+    <EditText android:layout_below="@+id/threadreply_layout_buttons" android:id="@+id/postmessage_edittext" android:layout_width="match_parent" android:inputType="textMultiLine" android:layout_height="match_parent">
+        <requestFocus></requestFocus>
+    </EditText>
+    
+</RelativeLayout>

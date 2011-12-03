@@ -113,8 +113,8 @@ public class ShowUserActivity extends ListActivity {
 	   }
 	   else if (item.getItemId() == R.id.showuser_contextmenu_reply) {
 			Bundle bundle = new Bundle();
-			bundle.putInt("origin", this.adapter.getItem(info.position).getId());
-			Intent intent = new Intent(this, ThreadReplyActivity.class);
+			bundle.putInt("replyto", this.adapter.getItem(info.position).getId());
+			Intent intent = new Intent(this, PostMessageActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 	   }

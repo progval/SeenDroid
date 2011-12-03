@@ -56,25 +56,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
         MainActivity.settings = PreferenceManager.getDefaultSharedPreferences(this);
-        
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        String action = intent.getAction();
 
         this.bindUi();
-
-        Log.d("SeenDroid", "root");
-        // if this is from the share menu
-        if (Intent.ACTION_SEND.equals(action))
-        {
-            Log.d("SeenDroid", "send");
-            if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                Log.d("SeenDroid", "extras");
-            	EditText post = (EditText) this.findViewById(R.id.main_edittext_post);
-            	post.setText(extras.getString(Intent.EXTRA_TEXT));
-            	post.requestFocus();
-            }
-        }
 
         this.safeConnect();
     }
@@ -197,7 +180,8 @@ public class MainActivity extends Activity {
 
 						@Override
 						public void onClick(View button) {
-							MainActivity.this.post();
+							Intent intent = new Intent(MainActivity.this, PostMessageActivity.class);
+							startActivity(intent);
 
 						}
 	    				
@@ -212,11 +196,5 @@ public class MainActivity extends Activity {
 
     	// Settings
     	((Button) this.findViewById(R.id.main_button_settings)).setOnClickListener(new OnUnavailableFeatureClickListener());
-    }
-    
-    public void post() {
-		String message = ((EditText) this.findViewById(R.id.main_edittext_post)).getText().toString();
-	    
-		new AsyncMessageEmitter(this, this.connection, message).execute();
     }
 }

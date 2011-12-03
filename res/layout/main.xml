@@ -22,7 +22,5 @@
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_edittext_goto"></EditText>
     <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/main_text_send" android:text="@string/main_text_send" android:layout_gravity="center_vertical" android:layout_width="wrap_content"></TextView>
     <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/main_button_send" android:text="@string/main_button_send"></Button>
-    <EditText android:id="@+id/main_edittext_post" android:inputType="textMultiLine" android:layout_width="match_parent" android:gravity="top" android:layout_height="match_parent">
-    </EditText>
     </LinearLayout>
 </ScrollView>
