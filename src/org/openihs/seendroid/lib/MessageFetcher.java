@@ -22,6 +22,7 @@
 
 package org.openihs.seendroid.lib;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
@@ -39,11 +40,11 @@ public class MessageFetcher extends Query {
 		super(connection);
 		
 	}
-	public Message fetchId(int id) throws ParserException {
+	public Message fetchId(int id) throws ParserException, UnknownHostException {
 		Document document = this.getXmlDocument(String.format("/messages/%d", id));
 		return new Message(document.getDocumentElement());
 	}
-	private ArrayList<Message> multipleFetch(String uri) throws ParserException, UserDoesNotExist {
+	private ArrayList<Message> multipleFetch(String uri) throws ParserException, UserDoesNotExist, UnknownHostException {
 		Log.d("SeenDroid", "Downloading.");
 		Document document = this.getXmlDocument(uri);
 		if (document.getDocumentElement().getNodeName().equals("html")) {
@@ -72,10 +73,10 @@ public class MessageFetcher extends Query {
 		
 		return messages;
 	}
-	public ArrayList<Message> fetchHome() throws ParserException, UserDoesNotExist {
+	public ArrayList<Message> fetchHome() throws ParserException, UserDoesNotExist, UnknownHostException {
 		return this.multipleFetch("/messages/");
 	}
-	public ArrayList<Message> fetchUser(String username) throws ParserException, UserDoesNotExist {
+	public ArrayList<Message> fetchUser(String username) throws ParserException, UserDoesNotExist, UnknownHostException {
 		return this.multipleFetch(String.format("/people/%s/messages", username));
 	}
 }

@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.UnknownHostException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -75,15 +76,17 @@ public abstract class Query {
         }
     }
 	
-	protected Document getXmlDocument(String uri) throws ParserException {
+	protected Document getXmlDocument(String uri) throws ParserException, UnknownHostException {
 	    return this.getXmlDocument(this.connection.getHttpGet(uri));
 	}
-	protected Document getXmlDocument(HttpRequestBase request) throws ParserException {
+	protected Document getXmlDocument(HttpRequestBase request) throws ParserException, UnknownHostException {
 		HttpResponse response;
 		try {
 			response = this.connection.query(request);
 	        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			return builder.parse(response.getEntity().getContent());
+		} catch (UnknownHostException e) {
+			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Query.ParserException();

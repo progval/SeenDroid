@@ -24,6 +24,7 @@ package org.openihs.seendroid;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.openihs.seendroid.lib.Connection;
@@ -132,6 +133,7 @@ public class ShowUserActivity extends ListActivity {
     	private Connection connection;
     	private String username;
     	private ProgressDialog dialog;
+    	private int error_message;
     	
     	public FetchMessages(ShowUserActivity activity, Connection connection, String username) {
     		super();
@@ -146,16 +148,20 @@ public class ShowUserActivity extends ListActivity {
         	Log.d("SeenDroid", this.connection.toString());
         	Log.d("SeenDroid", this.username);
         	try {
-				try {
-					result = new MessageFetcher(this.connection).fetchUser(this.username);
-				} catch (UserDoesNotExist e) {
-					return null;
-				}
+				result = new MessageFetcher(this.connection).fetchUser(this.username);
+			} catch (UserDoesNotExist e) {
+				this.error_message = R.string.showuser_usernotfound;
+				return null;
+			} catch (UnknownHostException e) {
+				this.error_message = R.string.error_unknownhost;
+				ShowUserActivity.this.finish();
+				return null;
 			} catch (ParserException e) {
 				result = new ArrayList<Message>();
 				Utils.errorLog(this.activity, e, String.format("Showing user %s.", this.username));
+	        	return result;
 			}
-        	return result;
+        	return null;
         }
 
         protected void onProgressUpdate(Integer... progress) {
@@ -168,7 +174,7 @@ public class ShowUserActivity extends ListActivity {
 	            this.activity.setMessages(result);
         	}
         	else {
-				Toast.makeText(ShowUserActivity.this, R.string.showuser_usernotfound, Toast.LENGTH_LONG).show();
+				Toast.makeText(ShowUserActivity.this, this.error_message, Toast.LENGTH_LONG).show();
 				ShowUserActivity.this.finish();
         	}
         }

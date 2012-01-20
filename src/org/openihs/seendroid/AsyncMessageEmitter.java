@@ -22,6 +22,8 @@
 
 package org.openihs.seendroid;
 
+import java.net.UnknownHostException;
+
 import org.openihs.seendroid.lib.Connection;
 import org.openihs.seendroid.lib.MessageEmitter;
 import org.openihs.seendroid.lib.Query.ParserException;
@@ -58,13 +60,18 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
 	protected Document doInBackground(Void... arg0) {
     	try {
     		MessageEmitter emitter = new MessageEmitter(this.connection);
-    		if (this.replyTo == -1) {
-    			Log.d("SeenDroid", "reply");
-    			return emitter.publish(this.message);
-    		}
-    		else {
-    			Log.d("SeenDroid", "post");
-    			return emitter.publish(this.message, this.replyTo);
+    		try {
+	    		if (this.replyTo == -1) {
+	    			Log.d("SeenDroid", "reply");
+	    			return emitter.publish(this.message);
+	    		}
+	    		else {
+	    			Log.d("SeenDroid", "post");
+	    			return emitter.publish(this.message, this.replyTo);
+	    		}
+    		} catch (UnknownHostException e) {
+				Toast.makeText(this.activity, R.string.error_unknownhost, Toast.LENGTH_LONG).show();
+				return null;
     		}
     		
 		} catch (ParserException e) {

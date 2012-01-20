@@ -24,6 +24,7 @@ package org.openihs.seendroid.lib;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 
 import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
@@ -68,7 +69,7 @@ public class Connection {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public HttpResponse query(HttpRequestBase message) throws ClientProtocolException, IOException {
+	public HttpResponse query(HttpRequestBase message) throws ClientProtocolException, IOException, UnknownHostException {
 		// SSL fixes (javax.net.ssl.SSLPeerUnverifiedException: No peer certificate)
 		// From http://www.virtualzone.de/2011-02-27/how-to-use-apache-httpclient-with-httpsssl-on-android/
 		SchemeRegistry schemeRegistry = new SchemeRegistry();

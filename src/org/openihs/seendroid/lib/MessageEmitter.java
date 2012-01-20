@@ -23,6 +23,7 @@
 package org.openihs.seendroid.lib;
 
 import java.io.StringWriter;
+import java.net.UnknownHostException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -40,11 +41,11 @@ public class MessageEmitter extends Query {
 		super(connection);
 	}
 	
-	public Document publish(String message) throws ParserException {
+	public Document publish(String message) throws ParserException, UnknownHostException {
 		return this.publish(message, -1);
 	}
 
-	public Document publish(String message, int replyTo) throws ParserException {
+	public Document publish(String message, int replyTo) throws ParserException, UnknownHostException {
 		Document document;
 		try {
 			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
