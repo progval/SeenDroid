@@ -85,7 +85,7 @@ public class AsyncMessageEmitter extends AsyncTask<Void, Integer, Document> {
     }
     protected void onPostExecute(Document document) {
         this.dialog.dismiss();
-        if (document.getDocumentElement() == null) {
+        if (document == null || document.getDocumentElement() == null) {
             Toast.makeText(this.activity, R.string.postmessage_failed, Toast.LENGTH_LONG).show();
         }
         else {
