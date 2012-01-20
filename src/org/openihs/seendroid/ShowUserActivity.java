@@ -161,7 +161,7 @@ public class ShowUserActivity extends ListActivity {
 				Utils.errorLog(this.activity, e, String.format("Showing user %s.", this.username));
 	        	return result;
 			}
-        	return null;
+        	return result;
         }
 
         protected void onProgressUpdate(Integer... progress) {
