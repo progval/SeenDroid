@@ -9,7 +9,7 @@
         <requestFocus></requestFocus>
     </EditText>
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/loginprompt_text_password" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/loginprompt_text_password"></TextView>
-    <EditText android:layout_width="fill_parent" android:id="@+id/loginprompt_edittext_password" android:layout_height="wrap_content"></EditText>
+    <EditText android:layout_width="fill_parent" android:id="@+id/loginprompt_edittext_password" android:layout_height="wrap_content" android:password="true"></EditText>
     <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/loginprompt_button_connect" android:text="@string/loginprompt_button_connect"></Button>
     
 </LinearLayout>
